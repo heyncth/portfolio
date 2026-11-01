@@ -1,0 +1,147 @@
+{
+  "projects": [
+    {
+      "id": "youtube-auto-dub",
+      "title": "Youtube Auto Dub",
+      "tag": "AI Pipeline / Automation",
+      "tags": ["Python", "FFmpeg", "Whisper", "Edge-TTS", "CLI"],
+      "thumbnail_url": "assets/videos/demo-ytbdubbing.mp4",
+      "description": "CLI pipeline tự động lồng tiếng video YouTube. Transcribe bằng Whisper, dịch qua Google Translate API, tổng hợp giọng nói bằng Edge-TTS rồi mix audio với FFmpeg — giữ nguyên nhạc nền và sync theo mốc thời gian gốc.",
+      "github": "https://github.com/mangodxd/youtube-auto-dub",
+      "order": 1,
+      "story": {
+        "reason": "Mình hay xem video kỹ thuật nước ngoài nhưng việc vừa code vừa đọc phụ đề rất mất tập trung. Thay vì dùng subtitle có sẵn, mình quyết định xây một pipeline để AI đọc thẳng bằng tiếng Việt.",
+        "challenges": [
+          "Sync giọng TTS khớp với mốc thời gian transcript gốc — lệch vài trăm ms là nghe ngay.",
+          "Mix audio mà không làm mất nhạc nền: ducking đúng chỗ, không cắt cứng.",
+          "Batch translate cả trăm segment mà không bị rate-limit hoặc mất thứ tự.",
+          "Edge-TTS và Google Translate đều là unofficial API — cần fallback khi endpoint thay đổi."
+        ],
+        "solutions": [
+          "Dùng faster-whisper lấy word-level timestamp, sau đó smart_chunk() gom segment theo gap và duration thay vì chia đều.",
+          "Overlay TTS clip lên original audio bằng pydub, giảm nhạc nền -12dB để giọng đọc nổi lên tự nhiên.",
+          "Batch translate bằng delimiter trick — join tất cả segment thành một request duy nhất, tách lại theo delimiter sau khi nhận response.",
+          "GoogleTranslator dùng RPC method chính, fallback sang mobile scraping nếu token hết hạn hoặc bị 429."
+        ],
+        "lessons": [
+          "Unofficial API tiện nhưng fragile — cần thiết kế fallback từ đầu, không phải vá sau.",
+          "Audio processing có rất nhiều edge case nhỏ (silence, overlap, codec mismatch) mà chỉ test thực tế mới ra.",
+          "Chunking strategy ảnh hưởng chất lượng dịch nhiều hơn mình nghĩ — context đủ dài thì bản dịch mạch lạc hơn hẳn.",
+          "CLI tool cần output rõ ràng từng bước — rich console giúp debug nhanh hơn print() rất nhiều."
+        ]
+      },
+      "demo": {
+        "type": "video",
+        "url": "assets/videos/demo-ytbdubbing.mp4",
+        "description": "Pipeline chạy end-to-end: download → transcribe → translate → TTS → render"
+      }
+    },
+    {
+      "id": "iris",
+      "title": "IRIS",
+      "tag": "Developer Tool / Web Scraping",
+      "tags": ["Python", "Playwright", "CLI", "Design Tokens", "W3C DTCG"],
+      "thumbnail_url": "assets/images/iris-showcase.png",
+      "description": "CLI tool extract design token từ bất kỳ website nào — màu sắc, typography, spacing, shadow, border radius — trực tiếp từ DOM và computed styles qua Playwright. Hỗ trợ export theo chuẩn W3C DTCG để dùng với Style Dictionary.",
+      "github": "https://github.com/mangodxd/iris",
+      "order": 2,
+      "story": {
+        "reason": "Mỗi lần làm frontend, mình hay phải mở DevTools để mò màu sắc và font của một site khác. Làm đi làm lại nhiều lần thì mình nghĩ: cái này tự động hoá được.",
+        "challenges": [
+          "Playwright bị bot detection chặn trên nhiều site — Chromium headless bị fingerprint, còn Firefox thì bypass được nhưng chậm hơn.",
+          "Computed styles trả về hàng trăm màu — phần lớn là màu hệ thống hoặc màu mặc định của browser, không liên quan đến brand.",
+          "W3C DTCG spec dùng color format riêng (sRGB normalized 0–1), trong khi DOM trả về hex hoặc rgb() string — cần pipeline chuyển đổi qua nhiều color space.",
+          "SPA cần thởi gian hydrate sau khi load — extract quá sớm thì thiếu data, quá muộn thì timeout."
+        ],
+        "solutions": [
+          "Inject stealth script để mask navigator.webdriver, tự động retry ở visible mode nếu headless bị block. Firefox là fallback cho Cloudflare.",
+          "Gán confidence score cho mỗi màu dựa trên context: màu từ logo/button/primary element được mark 'high', màu từ generic UI component bị lọc khỏi terminal output.",
+          "Viết colors.py từ đầu: parse cả hex lẫn rgb() syntax, chuyển đổi sRGB → XYZ → LAB → LCH và sRGB → OKLAB → OKLCH để output đủ các format CSS hiện đại.",
+          "Chờ 8s hydration ban đầu + 4s stabilization, đồng thởi validate content length > 500 chars trước khi chạy extractor — đảm bảo page đã render xong."
+        ],
+        "lessons": [
+          "Color deduplication và confidence scoring quan trọng hơn việc extract được nhiều — garbage in, garbage out.",
+          "Viết color conversion library thủ công thay vì dùng thư viện giúp mình hiểu thật sự LCH và OKLCH khác nhau ở điểm nào và tại sao OKLCH được CSS hiện đại ưa chuộng hơn.",
+          "CLI tool tốt không chỉ là chạy đúng — output phải đọc được ngay, không cần mở file thêm."
+        ]
+      },
+      "demo": {
+        "type": "image",
+        "url": "assets/images/iris-showcase.png",
+        "description": "Extract design tokens từ các website — màu sắc, typography, spacing hiển thị trực tiếp trên terminal"
+      }
+    },
+    {
+      "id": "ky-ao-tot-nghiep",
+      "title": "Ký Đi Chờ Chi",
+      "tag": "Web App / Fullstack",
+      "tags": ["JavaScript", "Canvas", "GitHub API", "Octokit", "Realtime"],
+      "thumbnail_url": "assets/images/kyao-showcase.png",
+      "description": "Web app cho phép bạn bè ký tên lên áo vào ngày tốt nghiệp theo đúng nghĩa đen — chọn vị trí trên áo, vẽ chữ ký tay, chọn màu mực. Chữ ký được lưu trên GitHub thông qua Octokit REST API và hiển thị realtime trên tường chữ ký chung.",
+      "github": "https://github.com/mangodxd/ky-ao-tot-nghiep",
+      "order": 3,
+      "story": {
+        "reason": "Cuối năm lớp 9, cả lớp rủ nhau ký áo tốt nghiệp. Mình thấy ký áo thật thì đẹp nhưng không phải ai cũng có mặt đúng lúc — nên mình tự hỏi: sao không làm một cái áo online để ai cũng ký được, dù ở đâu?",
+        "challenges": [
+          "Lưu trữ ảnh chữ ký base64 lên đâu khi không có database hay paid storage?",
+          "Đặt chữ ký đúng vị trí trên áo — coordinate system giữa click event và SVG viewport không khớp nhau.",
+          "Tránh race condition khi nhiều người submit cùng lúc, cùng đọc/ghi một file sigs.json trên GitHub.",
+          "Signature canvas trên mobile cảm ứng kém nhạy, nét vẽ bị ngắt quãng."
+        ],
+        "solutions": [
+          "Dùng GitHub repository làm storage miễn phí: ảnh PNG lưu vào /signatures/, metadata lưu vào sigs.json — đọc/ghi qua Octokit REST API với SHA-based update để tránh conflict.",
+          "Chuẩn hoá toạ độ click về phần trăm (%) so với container thay vì pixel tuyệt đối, render lại theo kích thước thực của shirt-wrapper.",
+          "Mỗi POST request đọc SHA mới nhất của file trước khi ghi — nếu SHA cũ thì GitHub tự reject, tránh ghi đè lên dữ liệu người khác.",
+          "Dùng signature_pad với pointsPerCurve và minWidth tuned lại, thêm passive touch event để canvas bắt nét mượt hơn trên điện thoại."
+        ],
+        "lessons": [
+          "GitHub API có thể làm database tạm được — không lý tưởng nhưng zero cost và đủ dùng cho side project nhỏ.",
+          "Coordinate mapping nghe đơn giản nhưng dễ sai khi layout responsive — cần test thật trên nhiều kích thước màn hình.",
+          "Viết dự án này lúc cuối lớp 9 giúp mình hiểu rằng ý tưởng nhỏ nhưng gần gũi thường có người dùng thật hơn là tool hoành tráng không ai cần."
+        ]
+      },
+      "demo": {
+        "type": "image",
+        "url": "assets/images/kyao-showcase.png",
+        "external_url": "https://kyao.onrender.com",
+        "description": "Chọn vị trí trên áo, vẽ chữ ký, lưu và xem tường chữ ký của cả lớp"
+      }
+    },
+    {
+      "id": "doan-so",
+      "title": "Đoán Số",
+      "tag": "Web App / Realtime Multiplayer",
+      "tags": ["Node.js", "Socket.IO", "Realtime", "Game", "Multiplayer"],
+      "thumbnail_url": "assets/images/doanso-showcase.png",
+      "description": "Game đoán số bí mật 2 người chơi realtime. Mỗi người giữ một dãy số, thay nhau hỏi câu hỏi Đúng/Sai để thu hẹp khả năng rồi đưa ra dự đoán — đoán sai mất lượt ngay. Kết nối qua Socket.IO, tham gia bằng link chia sẻ.",
+      "github": "https://github.com/mangodxd/doan-so",
+      "order": 4,
+      "story": {
+        "reason": "Mình và bạn bè tự nghĩ ra trò này và chơi khá vui — nhưng chỉ chơi được khi ngồi cạnh nhau. Mình muốn chơi từ xa nên tự xây luôn.",
+        "challenges": [
+          "Quản lý game state phức tạp hơn dự kiến — không chỉ là 'lượt ai' mà còn là 'đang ở bước nào trong lượt đó' (asking / answering / waiting).",
+          "Đồng bộ state giữa hai client khi một người disconnect giữa chừng — cần xử lý nhiều trường hợp: disconnect lúc waiting, lúc setup, lúc đang chơi.",
+          "Secret number phải được hash trước khi lưu vào room state để tránh leak qua socket event, nhưng vẫn cần raw value để reveal sau game over.",
+          "Client cần tự suy ra UI nào hiển thị dựa trên room state nhận về — không có endpoint riêng cho từng player."
+        ],
+        "solutions": [
+          "Dùng `actionState` field ('asking' / 'answering') song song với `turn` để encode đầy đủ trạng thái mỗi bước — client render đúng UI chỉ bằng cách so `room.turn === myId` và `room.actionState`.",
+          "Handler `disconnect` phân nhánh theo `room.state`: nếu đang chơi thì kết thúc game và trao chiến thắng cho đối thủ; nếu đang setup thì reset phòng về trạng thái waiting.",
+          "Hash secret bằng SHA-256 trước khi attach vào player object; `sanitizeRoom()` strip `secretRaw` khỏi mọi broadcast — chỉ expose raw value trong event `gameOver` sau khi game kết thúc.",
+          "Toàn bộ game UI được drive bởi một `updateRoomState` handler duy nhất — client không giữ state cục bộ, chỉ render từ room object server gửi về."
+        ],
+        "lessons": [
+          "State machine rõ ràng (waiting → setup → playing → finished) giúp xử lý edge case dễ hơn nhiều so với dùng boolean flag rải rác.",
+          "Realtime game cần nghĩ về disconnect từ đầu — không phải tính năng thêm sau, vì nó ảnh hưởng trực tiếp đến thiết kế room state.",
+          "Single source of truth ở server và broadcast toàn bộ state mỗi lần thay đổi đơn giản hơn nhiều so với sync từng field riêng lẻ — đánh đổi bandwidth lấy độ tin cậy là xứng đáng ở scale nhỏ."
+        ]
+      },
+      "demo": {
+        "type": "image",
+        "url": "assets/images/doanso-showcase.png",
+        "external_url": "https://doan-so.onrender.com",
+        "description": "Tạo phòng, chia sẻ link, hỏi đáp realtime và đoán số thắng"
+      }
+    }
+  ]
+}

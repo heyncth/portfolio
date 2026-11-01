@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nguyễn Huy (@mangodxd)</title>
+  
+  <meta name="description" content="Portfolio của Nguyễn Công Thuận Huy (@mangodxd) - Lập trình viên yêu thích AI, ML và Web Development.">
+  <meta name="theme-color" content="#FAFAF8">
+  <link rel="canonical" href="https://github.com/mangodxd">
+  
+  <meta property="og:title" content="Nguyễn Công Thuận Huy | Portfolio">
+  <meta property="og:description" content="Nhật ký sáng tạo và hành trình lập trình của Huy.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://github.com/mangodxd">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nguyễn Công Thuận Huy",
+    "alternateName": "mangodxd",
+    "url": "https://github.com/mangodxd",
+    "jobTitle": "Developer",
+    "sameAs": [
+      "https://github.com/mangodxd"
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="iconic.png" type="image/x-icon">
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Mali:wght@600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+  <a href="#home-top" class="nav-brand" aria-label="Về trang đầu">NCTH</a>
+  
+  <ul class="nav-inline-links">
+    <li><a href="#about" class="nav-link-item">About</a></li>
+    <li><a href="#projects" class="nav-link-item">Projects</a></li>
+    <li><a href="#contact" class="nav-link-item">Contact</a></li>
+  </ul>
+</nav>
+
+  <main>
+    <section id="home-top" class="hero" aria-labelledby="hero-name">
+      <div class="hero-content fade-in-section">
+        <span class="greeting">Xin chào,</span>
+        <h1 id="hero-name">NGUYỄN CÔNG<br>THUẬN HUY</h1>
+        <p class="role-line">Developer · Student · @mangodxd</p>
+        
+        <blockquote class="hero-quote" aria-live="polite">
+          <p id="quote-text"></p>
+        </blockquote>
+      </div>
+      <div class="scroll-cue" aria-hidden="true">↓</div>
+    </section>
+
+    <section id="about" class="about" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title fade-in-section">about me</h2>
+      <div class="about-grid fade-in-section">
+        <div class="about-image-col">
+          <img src="assets/images/profile/face.jpg" alt="Nguyễn Công Thuận Huy" loading="lazy" class="profile-photo">
+          <h3 class="about-name">Nguyễn Công Thuận Huy</h3>
+          <span class="about-handle">@mangodxd</span>
+        </div>
+        <div class="about-text-col">
+          <p>Chào bạn, mình là Huy.</p>
+          <p>Mình là học sinh, và mình code. Bắt đầu từ những năm cấp 2, hành trình 4 năm tự học vừa qua là kết quả của sự nỗ lực và kiên trì mỗi ngày. Với mình, đam mê không nằm ở bằng cấp hay chứng chỉ mà nằm ở việc kiên trì học hỏi và tiếp thu mỗi ngày.</p>
+          <p>Góc nhỏ này là nơi mình lưu trữ những thứ mình đã làm và đã nghĩ. Cảm ơn bạn đã ghé thăm và lắng nghe câu chuyện của mình.</p>
+          <div class="about-tags">
+            <span class="tag-pill">#ncth</span>
+            <span class="tag-pill">#developer</span>
+            <span class="tag-pill">#python</span>
+            <span class="tag-pill">#web</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title" class="section-title fade-in-section">featured projects</h2>
+      <hr class="section-divider">
+      <div id="projects-container" aria-live="polite">
+        </div>
+    </section>
+
+    <section id="contact" class="contact fade-in-section" aria-labelledby="contact-title">
+      <div class="contact-content">
+        <h2 id="contact-title">let's connect</h2>
+        <a href="mailto:nguyencongthuanhuy@gmail.com" class="contact-link">nguyencongthuanhuy@gmail.com</a>
+        <a href="https://www.facebook.com/heyimboone" class="contact-link">Facebook</a>
+        <a href="https://github.com/mangodxd" class="contact-link">GitHub</a>
+        <a href="tel:0707597335" class="contact-link" title="Chỉ hoạt động trên điện thoại">Zalo / 070.759.7335</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-copyright">Approved by Cat, Dog and Huy.</p>
+  </footer>
+
+  <div id="project-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-card">
+      <button id="modal-close" class="modal-close" aria-label="Đóng modal">×</button>
+      <div class="modal-header">
+        <span id="modal-tag" class="modal-tag-label">TAG</span>
+        <h2 id="modal-title" class="modal-title">Project Title</h2>
+      </div>
+      <div id="modal-body" class="modal-body">
+        </div>
+      <div class="modal-footer">
+        <a id="modal-github-link" href="#" target="_blank" rel="noopener" class="btn-outline">Xem mã nguồn GitHub</a>
+        <a id="modal-demo-link" href="#" target="_blank" rel="noopener" class="btn-outline">Xem bản chạy thử</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
