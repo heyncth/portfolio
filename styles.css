@@ -7,7 +7,6 @@
   --sky: #A8D8EA;
   --mint: #95E1D3;
   --amber: #FCE38A;
-  --sun: #FFF5D1;
 
   /* Spacing Scale */
   --space-1: 8px; 
@@ -54,8 +53,7 @@ h1, h2, h3, h4 { margin: 0; }
 ul { list-style: none; }
 a { text-decoration: none; color: inherit; }
 
-/* --- Typography & Global Layout --- */
-main {
+/* --- Typography & Global Layout --- */main {
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 var(--space-4); 
@@ -71,14 +69,6 @@ main {
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   color: var(--ink);
   margin-bottom: var(--space-4);
-}
-
-.section-divider {
-    margin-top: 0;         
-    margin-bottom: var(--space-4); 
-    border: 0;
-    border-top: 1px solid var(--border); 
-    opacity: 0.4;          
 }
 
 section {
@@ -97,9 +87,7 @@ section {
   justify-content: space-between;
   align-items: center;
   padding: 0 var(--space-4);
-  background: rgba(250, 250, 248, 0.92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
+  background: var(--bg);
   z-index: var(--z-nav);
 }
 
@@ -116,7 +104,7 @@ section {
 .nav-link-item {
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--ink);
   transition: color 0.3s ease;
   position: relative;
@@ -155,8 +143,8 @@ section {
 
 /* --- Hero Section --- */
 .hero {
-  min-height: 100vh;
-  min-height: 100dvh; 
+  min-height: 100vh; /* taste-skill-ignore: vh fallback before dvh */
+  min-height: 100dvh;
   padding-top: 72px; /* Bù trừ chiều cao nav bar */
   display: flex;
   flex-direction: column;
@@ -176,7 +164,7 @@ section {
 .greeting {
   font-weight: 300;
   color: var(--pencil);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
 }
 
 #hero-name {
@@ -190,20 +178,34 @@ section {
 .role-line {
   font-weight: 400;
   color: var(--pencil);
-  font-size: 1.1rem;
-  margin-bottom: var(--space-5);
+  font-size: 1.25rem;
+  margin-bottom: var(--space-3);
 }
+
+.btn-primary {
+  display: inline-block;
+  background: var(--sky);
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 12px 32px;
+  min-height: 44px;
+  border-radius: 999px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+}
+.btn-primary:hover { background: var(--ink); color: var(--bg); }
+.btn-primary:active { transform: scale(0.98); }
 
 .hero-quote {
   max-width: 520px;
   border-left: 3px solid var(--sky);
   padding-left: 16px;
   text-align: left;
+  margin-top: var(--space-3);
 }
 
 .hero-quote p {
-  font-family: 'Patrick Hand', cursive;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: var(--pencil);
   margin: 0;
 }
@@ -244,7 +246,7 @@ section {
 .about-name {
   font-family: 'Mali', cursive;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-bottom: 4px;
 }
 
@@ -256,6 +258,7 @@ section {
 .about-text-col p {
   margin-bottom: var(--space-3);
   font-size: 1rem;
+  max-width: 54ch;
 }
 
 .about-tags {
@@ -281,10 +284,9 @@ section {
 .project-row {
   display: grid;
   grid-template-columns: 45fr 55fr;
-  gap: var(--space-5); 
+  gap: var(--space-5);
   align-items: center;
   padding: var(--space-5) 0;
-  border-bottom: 1px solid var(--border);
 }
 
 .project-row:first-child {
@@ -295,7 +297,6 @@ section {
   min-width: 0;
 }
 
-.project-row:last-child { border-bottom: none; }
 .project-row:nth-child(even) .project-image-col { order: 2; }
 .project-row:nth-child(even) .project-text-col { order: 1; }
 
@@ -335,11 +336,9 @@ section {
   }
 }
 
-.project-label {
-  font-size: 0.85rem;
-  color: var(--pencil);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.project-cat {
+  font-size: 0.875rem;
+  color: var(--ink);
   margin-bottom: var(--space-2);
   display: block;
 }
@@ -375,6 +374,7 @@ section {
   color: var(--pencil);
   margin-bottom: var(--space-4);
   font-size: 1rem;
+  max-width: 54ch;
 }
 
 .btn-story {
@@ -385,13 +385,11 @@ section {
   color: var(--ink);
   font-size: 1rem;
   cursor: pointer;
-  padding: 4px 0; 
-  border-bottom: 1px solid var(--ink);
-  transition: color 0.2s ease, border-color 0.2s ease, transform 0.1s ease; 
+  padding: 4px 0;
+  transition: color 0.2s ease, transform 0.1s ease;
 }
-
-.btn-story:hover { color: var(--sky); border-color: var(--sky); }
-.btn-story:active { color: var(--sky); border-color: var(--sky); transform: scale(0.98); } 
+.btn-story:hover { color: var(--sky); }
+.btn-story:active { color: var(--sky); transform: scale(0.98); }
 
 .loading-placeholder {
   height: 200px;
@@ -402,8 +400,11 @@ section {
 
 /* --- Contact Section --- */
 .contact {
-    padding-top: var(--space-6);    
-    padding-bottom: var(--space-7); 
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-7);
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    background: var(--sky);
 }
 
 .contact-content {
@@ -413,19 +414,18 @@ section {
 .contact-content h2 {
   font-family: 'Mali', cursive;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   margin-bottom: var(--space-3);
 }
 
 .contact-link {
   display: block;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--ink);
   margin-bottom: 8px;
   transition: color 0.3s;
 }
 .contact-link:hover {
-  color: var(--mint);
   text-decoration: underline;
 }
 
@@ -433,8 +433,7 @@ section {
 .site-footer {
   text-align: center;
   padding: var(--space-5) 0;
-  border-top: 1px solid var(--border);
-  margin-top: var(--space-6);
+  background: var(--sky);
 }
 
 .footer-copyright { font-size: 0.875rem; color: var(--pencil); } 
@@ -444,8 +443,7 @@ section {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(26, 26, 26, 0.4);
-  backdrop-filter: blur(5px);
-  z-index: var(--z-modal); 
+  z-index: var(--z-modal);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -461,6 +459,7 @@ section {
   padding: var(--space-5);
   position: relative;
   overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(26, 26, 26, 0.25); /* taste-skill-ignore: dialog, a real overlay */
 }
 
 @media (max-width: 768px) {
@@ -500,19 +499,8 @@ section {
   letter-spacing: 0.05em;
   margin: var(--space-4) 0 8px;
 }
-.modal-body p, .modal-body li { font-size: 0.95rem; margin-bottom: 8px; color: var(--ink); }
+.modal-body p, .modal-body li { font-size: 1rem; margin-bottom: 8px; color: var(--ink); }
 .modal-body ul { padding-left: 16px; list-style: disc; }
-
-.modal-demo-box {
-  background: var(--sun);
-  border-radius: 8px;
-  padding: var(--space-2);
-  margin-top: var(--space-4);
-}
-.modal-demo-box img, .modal-demo-box video {
-  width: 100%;
-  border-radius: 4px;
-}
 
 .modal-footer { 
   margin-top: var(--space-5); 
@@ -523,22 +511,22 @@ section {
 .btn-outline {
   display: inline-block;
   padding: 10px 24px;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--ink); /* taste-skill-ignore: solid-bordered control, not a decorative box */
   border-radius: 999px;
   font-weight: 500;
-  font-size: 0.95rem;
-  transition: all 0.3s ease; 
+  font-size: 1rem;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.1s ease;
 }
 .btn-outline:hover { background: var(--ink); color: var(--bg); }
 .btn-outline:active { transform: scale(0.97); } 
 
 /* --- Animations --- */
-.fade-in-section {
+.js .fade-in-section {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.fade-in-section.visible {
+.js .fade-in-section.visible {
   opacity: 1;
   transform: none;
 }

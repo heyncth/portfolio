@@ -1,4 +1,5 @@
 /* --- Config & State --- */
+document.documentElement.classList.add('js');
 
 const Config = {
   quotes: [
@@ -110,7 +111,7 @@ function renderProjects() {
 
     let mediaHtml = '';
     if (p.demo && p.demo.type === 'video') {
-      mediaHtml = `<video class="project-media" src="${p.demo.url}" autoplay loop muted playsinline></video>`;
+      mediaHtml = `<video class="project-media" src="${p.demo.url}" poster="assets/images/${p.id}-poster.jpg" preload="metadata" autoplay loop muted playsinline></video>`;
     } else {
       const imgSrc = getProjectImage(p);
       mediaHtml = `<img src="${imgSrc}" alt="${p.title}" loading="lazy" class="project-media" onerror="this.style.background='var(--border)';this.removeAttribute('src')">`;
@@ -124,11 +125,11 @@ function renderProjects() {
           </div>
         </div>
         <div class="project-text-col">
-          <span class="project-label">[${p.tag}]</span>
           <h3 class="project-title">
             <span class="title-text">${p.title}</span>
             <div class="title-underline" style="background-color: ${underlineColor}"></div>
           </h3>
+          <p class="project-cat">${p.tag}</p>
           <p class="project-desc">${p.description}</p>
           <button class="btn-story" data-id="${p.id}">READ MORE →</button>
         </div>
@@ -143,6 +144,14 @@ function renderProjects() {
       modalManager.open(e.target.dataset.id);
     }
   });
+
+  const videoObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.play().catch(() => {});
+      else entry.target.pause();
+    });
+  }, { threshold: 0.25 });
+  container.querySelectorAll('video').forEach(v => videoObserver.observe(v));
 }
 
 /* --- Subsystems --- */

@@ -73,3 +73,6 @@ temp/
 *.tmp
 *.bak
 *.backup
+
+# tasteskill inspection output
+.taste-skill/

@@ -4,11 +4,8 @@
       "id": "youtube-auto-dub",
       "title": "Youtube Auto Dub",
       "tag": "AI Pipeline / Automation",
-      "tags": ["Python", "FFmpeg", "Whisper", "Edge-TTS", "CLI"],
-      "thumbnail_url": "assets/videos/demo-ytbdubbing.mp4",
       "description": "CLI pipeline tự động lồng tiếng video YouTube. Transcribe bằng Whisper, dịch qua Google Translate API, tổng hợp giọng nói bằng Edge-TTS rồi mix audio với FFmpeg — giữ nguyên nhạc nền và sync theo mốc thời gian gốc.",
       "github": "https://github.com/mangodxd/youtube-auto-dub",
-      "order": 1,
       "story": {
         "reason": "Mình hay xem video kỹ thuật nước ngoài nhưng việc vừa code vừa đọc phụ đề rất mất tập trung. Thay vì dùng subtitle có sẵn, mình quyết định xây một pipeline để AI đọc thẳng bằng tiếng Việt.",
         "challenges": [
@@ -40,11 +37,8 @@
       "id": "iris",
       "title": "IRIS",
       "tag": "Developer Tool / Web Scraping",
-      "tags": ["Python", "Playwright", "CLI", "Design Tokens", "W3C DTCG"],
-      "thumbnail_url": "assets/images/iris-showcase.png",
       "description": "CLI tool extract design token từ bất kỳ website nào — màu sắc, typography, spacing, shadow, border radius — trực tiếp từ DOM và computed styles qua Playwright. Hỗ trợ export theo chuẩn W3C DTCG để dùng với Style Dictionary.",
       "github": "https://github.com/mangodxd/iris",
-      "order": 2,
       "story": {
         "reason": "Mỗi lần làm frontend, mình hay phải mở DevTools để mò màu sắc và font của một site khác. Làm đi làm lại nhiều lần thì mình nghĩ: cái này tự động hoá được.",
         "challenges": [
@@ -75,11 +69,8 @@
       "id": "ky-ao-tot-nghiep",
       "title": "Ký Đi Chờ Chi",
       "tag": "Web App / Fullstack",
-      "tags": ["JavaScript", "Canvas", "GitHub API", "Octokit", "Realtime"],
-      "thumbnail_url": "assets/images/kyao-showcase.png",
       "description": "Web app cho phép bạn bè ký tên lên áo vào ngày tốt nghiệp theo đúng nghĩa đen — chọn vị trí trên áo, vẽ chữ ký tay, chọn màu mực. Chữ ký được lưu trên GitHub thông qua Octokit REST API và hiển thị realtime trên tường chữ ký chung.",
       "github": "https://github.com/mangodxd/ky-ao-tot-nghiep",
-      "order": 3,
       "story": {
         "reason": "Cuối năm lớp 9, cả lớp rủ nhau ký áo tốt nghiệp. Mình thấy ký áo thật thì đẹp nhưng không phải ai cũng có mặt đúng lúc — nên mình tự hỏi: sao không làm một cái áo online để ai cũng ký được, dù ở đâu?",
         "challenges": [
@@ -111,11 +102,8 @@
       "id": "doan-so",
       "title": "Đoán Số",
       "tag": "Web App / Realtime Multiplayer",
-      "tags": ["Node.js", "Socket.IO", "Realtime", "Game", "Multiplayer"],
-      "thumbnail_url": "assets/images/doanso-showcase.png",
       "description": "Game đoán số bí mật 2 người chơi realtime. Mỗi người giữ một dãy số, thay nhau hỏi câu hỏi Đúng/Sai để thu hẹp khả năng rồi đưa ra dự đoán — đoán sai mất lượt ngay. Kết nối qua Socket.IO, tham gia bằng link chia sẻ.",
       "github": "https://github.com/mangodxd/doan-so",
-      "order": 4,
       "story": {
         "reason": "Mình và bạn bè tự nghĩ ra trò này và chơi khá vui — nhưng chỉ chơi được khi ngồi cạnh nhau. Mình muốn chơi từ xa nên tự xây luôn.",
         "challenges": [
